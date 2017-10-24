@@ -38,8 +38,39 @@ function saveBookmark(e){
         // Add bookmark to array
         bookmarks.push(bookmark);
         // Re-set back to localStorage
-        localStorage.setItem('bookmars', JSON.stringify(bookmarks));
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     }
     
    
+}
+
+// Fetch bookmarks
+function fetchBookmarks(){
+    // Get bookmarks from localStorage
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+
+    // Get output id
+    let bookmarksResults = document.getElementById('bookmarksResults');
+
+    // Build output
+    bookmarksResults.innerHTML = '';
+    for(let i = 0; i < bookmarks.length; i++){
+        let name = bookmarks[i].name;
+        let url = bookmarks[i].url;
+
+        bookmarksResults.innerHTML += `
+       
+            <div class="card w-75 mb-3 pt-3 pl-3">
+                <div class="card-block">
+                    <h4 class="card-title pr-5">${name}
+                    <a class="btn btn-primary ml-3" target=_"blank" href="${url}"
+                    >Visit</a>
+                    <a onclick="deleteBookmark(${url})" class="btn btn-danger ml-3" href="#"
+                    >Delete</a>
+                    </h4>
+                </div>
+            </div>
+       
+        `;
+    }
 }
