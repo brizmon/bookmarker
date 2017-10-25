@@ -40,8 +40,28 @@ function saveBookmark(e){
         // Re-set back to localStorage
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     }
-    
+
+    // Re-fetch bookmarks
+    fetchBookmarks();
    
+}
+
+// Delete bookmark
+function deleteBookmark(url){
+    // Get bookmarks from localstorage
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    // Loop through bookmarks
+    for(let i = 0; i < bookmarks.length; i++){
+        if(bookmarks[i].url == url){
+            // Remove from array
+            bookmarks.splice(i, 1);
+        }
+    }
+    // Re-set back to localStorage
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+
+    // Re-fetch bookmarks
+    fetchBookmarks();
 }
 
 // Fetch bookmarks
@@ -65,7 +85,7 @@ function fetchBookmarks(){
                     <h4 class="card-title pr-5">${name}
                     <a class="btn btn-primary ml-3" target=_"blank" href="${url}"
                     >Visit</a>
-                    <a onclick="deleteBookmark(${url})" class="btn btn-danger ml-3" href="#"
+                    <a onclick="deleteBookmark(\'${url}\')" class="btn btn-danger ml-3" href="#"
                     >Delete</a>
                     </h4>
                 </div>
