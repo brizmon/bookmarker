@@ -45,6 +45,9 @@ function saveBookmark(e){
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     }
 
+    // Clear form
+    document.getElementById('myForm').reset();
+
     // Re-fetch bookmarks
     fetchBookmarks();
    
@@ -99,6 +102,7 @@ function fetchBookmarks(){
     }
 }
 
+// Validate form
 function validateForm(siteName, siteUrl){
     if(!siteName || !siteUrl){
         alert('Please fill in the form');
